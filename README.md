@@ -1,2 +1,5 @@
 # PushSockServerLib
-Sockserver for push structure
+
+TCP소켓기반의 푸시서버구축 라이브러리입니다.
+
+이 라이브러리는 자바의 푸시서버 구축을 매우 간단하게 만들어줍니다.
