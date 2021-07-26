@@ -10,11 +10,11 @@ public class NullPacket implements Serializable, Packet {
 
     @Override
     public String getOrder() {
-        return "";
+        return "NULL";
     }
 
     @Override
     public String getMessage() {
-        return "";
+        return "NULL";
     }
 }

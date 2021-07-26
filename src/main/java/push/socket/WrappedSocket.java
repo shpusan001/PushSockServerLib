@@ -10,8 +10,6 @@ public interface WrappedSocket {
     public boolean isConnect() throws InterruptedException;
     public void close();
 
-    public boolean getIsKill();
-
     public void setSocketId(String socketId);
     public String getSocketId();
 }

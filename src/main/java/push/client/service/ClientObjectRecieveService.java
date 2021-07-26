@@ -14,9 +14,13 @@ public class ClientObjectRecieveService {
     private ClientObjectRecieveService(){}
 
     /**
-     * [Order]
-     * #1 : NOTICE
-     * @return
+     * Orders can be added with switch statements and functions
+     *
+     * --ex
+     * If :: order to be added is BROADCAST
+     * Then :: add a order to a switch statement
+     *         create and add a function in this form
+     *         function : order_BROADCAST(WrappedSocket wrappedSocket, Packet packet)
      */
 
     public void process(WrappedSocket wrappedSocket, Packet packet){
@@ -26,6 +30,6 @@ public class ClientObjectRecieveService {
     }
 
     private void order_NOTICE(WrappedSocket wrappedSocket, Packet packet){
-        new LogFormat("Client", "Server to ..{" + wrappedSocket.getSocketId() + "} : " + packet.getMessage()).log();
+        new LogFormat("Client", "Server => {" + wrappedSocket.getSocketId() + "} : " + packet.getMessage()).log();
     }
 }

@@ -1,5 +1,6 @@
 package push.client.thread;
 
+import push.SockConfiguration;
 import push.client.manager.ClientManager;
 import push.client.service.ClientObjectRecieveService;
 import push.log.LogFormat;
@@ -19,6 +20,8 @@ public class ClientProcessingThread implements Runnable {
                     new LogFormat("Client", "Server disconnected, try reconnect after 3s").log();
                     try {
                         Thread.sleep(3000);
+                        ClientManager.instance.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port,
+                                SockConfiguration.instance.id);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

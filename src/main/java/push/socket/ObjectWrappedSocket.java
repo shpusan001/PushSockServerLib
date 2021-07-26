@@ -14,15 +14,9 @@ public class ObjectWrappedSocket implements WrappedSocket {
     private ObjectOutputStream objectOutputStream;
     private ObjectInputStream objectInputStream;
 
-    private boolean isKill = false;
     private Thread connectingCheckThread;
 
     public String socketId = "NONE";
-
-    @Override
-    public boolean getIsKill() {
-        return isKill;
-    }
 
     public ObjectWrappedSocket(Socket socket, Socket checkingBitSocket, boolean isServerSide){
 
@@ -56,7 +50,6 @@ public class ObjectWrappedSocket implements WrappedSocket {
                 objectOutputStream.writeObject(packet);
                 objectOutputStream.reset();
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -82,7 +75,6 @@ public class ObjectWrappedSocket implements WrappedSocket {
                 packet = new NullPacket();
             }
         } catch (IOException | ClassNotFoundException e) {
-            isKill = true;
         }
 
         return packet;
@@ -93,7 +85,6 @@ public class ObjectWrappedSocket implements WrappedSocket {
         try {
                 DataOutputStream dataOutputStream = new DataOutputStream(checkingBitSocket.getOutputStream());
                 dataOutputStream.writeUTF("");
-                dataOutputStream.flush();
                 return true;
         } catch (IOException e) {
             return false;
@@ -109,19 +100,4 @@ public class ObjectWrappedSocket implements WrappedSocket {
             e.printStackTrace();
         }
     }
-
-
-    class ConnectingCheckThread implements Runnable{
-
-        @Override
-        public void run() {
-            try {
-                DataInputStream dataInputStream = new DataInputStream(checkingBitSocket.getInputStream());
-                String message = dataInputStream.readUTF();
-            } catch (IOException e) {
-                isKill=true;
-            }
-        }
-    }
-
 }

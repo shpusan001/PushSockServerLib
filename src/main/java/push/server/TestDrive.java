@@ -1,5 +1,6 @@
 package push.server;
 
+import push.SockConfiguration;
 import push.client.manager.ClientManager;
 import push.packet.DataPacket;
 import push.server.manager.ServerManager;
@@ -9,51 +10,96 @@ import java.util.UUID;
 
 public class TestDrive {
     public static void main(String[] args) {
-        String uuid = UUID.randomUUID().toString();
+
+        /**
+         * Sock Configuration Initialization
+         * --default
+         * ip : "127.0.0.1"
+         * port : 7777
+         * id : "" (must be initialized)
+         */
+
+        //Configuration's Id Initialize To UUID
+        SockConfiguration.instance.id = UUID.randomUUID().toString();
+
+        String uuid = SockConfiguration.instance.id;
+
+        //Server Thread
         new Thread(new Runnable() {
             @Override
             public void run() {
+                // Server Setting
                 ServerManager.use();
                 ServerManager serverManager = ServerManager.instance;
                 serverManager.setRepository(new WrappedSocketRepository());
-                serverManager.bound(3333);
+                serverManager.bound(SockConfiguration.instance.port);
                 serverManager.listen();
                 serverManager.process();
+                //
+
                 try {
                     Thread.sleep(300);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                serverManager.sendTarget(uuid, new DataPacket("1", "NOTICE", "1"));
-                serverManager.sendTarget(uuid, new DataPacket("1", "NOTICE", "와우"));
-                serverManager.sendTarget(uuid, new DataPacket("1", "NOTICE", "반가워용"));
-                serverManager.sendTarget(uuid, new DataPacket("1", "NOTICE", "호호호"));
-                serverManager.sendTarget(uuid, new DataPacket("1", "NOTICE", "호호호"));
+
+                //Send To Client
+                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "hi"));
+                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "nice"));
+                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "good"));
+                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "exellent"));
+                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "pretty"));
+                //
 
             }
         }).start();
 
+        //Client Thread
         new Thread(new Runnable() {
             @Override
             public void run() {
+                //Client Setting
                 ClientManager.use();
                 ClientManager clientManager = ClientManager.instance;
-                clientManager.connect("127.0.0.1", 3333, uuid);
+                clientManager.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port, uuid);
                 clientManager.process();
+                //
 
-                clientManager.getSocket().send(new DataPacket("1", "NOTICE", "히히히"));
-                clientManager.getSocket().send(new DataPacket("1", "NOTICE", "히히히"));
-                clientManager.getSocket().send(new DataPacket("1", "NOTICE", "히히히"));
-                clientManager.getSocket().send(new DataPacket("1", "NOTICE", "히히히"));
-                clientManager.getSocket().send(new DataPacket("1", "NOTICE", "히히히"));
-                clientManager.getSocket().send(new DataPacket("1", "NOTICE", "히히히"));
+                //Send To Server
+                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "bad"));
+                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "ugly"));
+                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "poop"));
+                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "pee"));
+                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "dummy"));
+                //
+
                 try {
-                    Thread.sleep(3000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
+                //Client Close
                 clientManager.getSocket().close();
+
+                /**
+                 * If client sock closed,
+                 * client sock automatically try to reconnect per 3s
+                 */
+
+                try {
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //After 4s
+
+                /**
+                 * Client is resurrectioned
+                 */
+
+                //Send To Server
+                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "sticky"));
             }
         }).start();
 
