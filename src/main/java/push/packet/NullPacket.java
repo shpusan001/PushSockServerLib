@@ -1,18 +1,20 @@
 package push.packet;
 
-public class NullPacket implements Packet {
+import java.io.Serializable;
+
+public class NullPacket implements Serializable, Packet {
     @Override
     public String getTag() {
-        return null;
+        return "NULL";
     }
 
     @Override
     public String getOrder() {
-        return null;
+        return "";
     }
 
     @Override
     public String getMessage() {
-        return null;
+        return "";
     }
 }

@@ -20,14 +20,19 @@ public class ServerObjectRecieveService {
      */
 
     public void process(WrappedSocket wrappedSocket, Packet packet){
-        switch(packet.getOrder()){
+        switch (packet.getOrder()) {
             case "UUID" : order_UUID(wrappedSocket, packet); break;
+            case "NOTICE" : order_NOTICE(wrappedSocket, packet); break;
         }
     }
 
     private void order_UUID(WrappedSocket wrappedSocket, Packet packet){
         wrappedSocket.setSocketId(packet.getMessage());
-        serverManager.repository.RegisteredSocketMap.put(wrappedSocket.getSocketId(), wrappedSocket);
-        new LogFormat("Server", "{" + wrappedSocket.getSocketId() + "} is registered");
+        serverManager.repository.RegisteredSocketMap.put(packet.getMessage(), wrappedSocket);
+        new LogFormat("Server", "{" + wrappedSocket.getSocketId() + "} is registered").log();
+    }
+
+    private void order_NOTICE(WrappedSocket wrappedSocket, Packet packet){
+        new LogFormat("Client", "Server to ..{" + wrappedSocket.getSocketId() + "} : " + packet.getMessage()).log();
     }
 }

@@ -17,7 +17,8 @@ public class ListenThread implements Runnable{
         while(!Thread.currentThread().isInterrupted()){
             try {
                 Socket socket = serverManager.getServerSocket().accept();
-                WrappedSocket wrappedSocket = new ObjectWrappedSocket(socket);
+                Socket bitCheckSocket = serverManager.getServerBitCheckSocket().accept();
+                WrappedSocket wrappedSocket = new ObjectWrappedSocket(socket, bitCheckSocket, true);
                 serverManager.repository.wrappedSocketList.add(wrappedSocket);
                 new LogFormat("Server", "Client connect, Connected : "
                         + serverManager.repository.wrappedSocketList.size()).log();

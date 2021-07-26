@@ -1,6 +1,8 @@
 package push.packet;
 
-public class DataPacket implements Packet {
+import java.io.Serializable;
+
+public class DataPacket implements Serializable, Packet  {
     String Tag;
     String Order;
     String Message;

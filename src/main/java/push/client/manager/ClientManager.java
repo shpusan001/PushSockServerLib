@@ -24,10 +24,14 @@ public class ClientManager {
         instance = new ClientManager();
     }
 
-    public void connect(String ip, int port){
+    public void connect(String ip, int port, String id){
         try {
             Socket socket = new Socket(ip, port);
-            wrappedSocket = new ObjectWrappedSocket(socket);
+            Socket checkingBitSocket = new Socket(ip, port+1);
+            wrappedSocket = new ObjectWrappedSocket(socket, checkingBitSocket, false);
+            wrappedSocket.setSocketId(id);
+            wrappedSocket.send("UUID", "UUID", wrappedSocket.getSocketId());
+            new LogFormat("Client", "connected, id ={" + id + "}").log();
         } catch (IOException e) {
             e.printStackTrace();
         }
