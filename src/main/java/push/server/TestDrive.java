@@ -10,5 +10,6 @@ public class TestDrive {
         serverManager.setRepository(new WrappedSocketRepository());
         serverManager.bound(3333);
         serverManager.listen();
+        serverManager.DataProcessing();
     }
 }

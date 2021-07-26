@@ -1,18 +1,16 @@
 package push.server.socket;
 
-import push.server.networkdata.DataPacket;
-import push.server.networkdata.NullPacket;
-import push.server.networkdata.Packet;
+import push.packet.DataPacket;
+import push.packet.NullPacket;
+import push.packet.Packet;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class ObjectWrappedSocket implements WrappedSocket {
     private Socket socket;
 
-    public String uuid;
+    public String socketId = "NON";
 
     public ObjectWrappedSocket(Socket socket){
         this.socket = socket;
@@ -22,7 +20,6 @@ public class ObjectWrappedSocket implements WrappedSocket {
     public void send(String tag, String order, String data){
         try {
             DataPacket packet = new DataPacket(tag, order, data);
-
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(packet);
         } catch (IOException e) {
@@ -31,13 +28,22 @@ public class ObjectWrappedSocket implements WrappedSocket {
     }
 
     @Override
+    public void setSocketId(String socketId) {
+        this.socketId = socketId;
+    }
+
+    @Override
+    public String getSocketId() {
+        return this.socketId;
+    }
+
+    @Override
     public Packet recieve() {
         Packet packet = new NullPacket();
 
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-            packet = (DataPacket) objectInputStream.readObject();
-
+            packet = (Packet) objectInputStream.readObject();
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -48,7 +54,8 @@ public class ObjectWrappedSocket implements WrappedSocket {
     @Override
     public boolean isConnect() {
         try {
-            socket.getInputStream();
+            InputStream inputStream = socket.getInputStream();
+            inputStream.read();
             return true;
         } catch (IOException e) {
             return false;

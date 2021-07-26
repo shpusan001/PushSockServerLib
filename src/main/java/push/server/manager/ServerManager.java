@@ -10,6 +10,7 @@ public class ServerManager {
 
     private ServerSocket serverSocket;
     private Thread listenThread;
+    private Thread dataProcessingThread;
 
     public static ServerManager instance;
     public WrappedSocketRepository repository;
@@ -44,6 +45,8 @@ public class ServerManager {
     }
 
     public void DataProcessing(){
-
+        new LogFormat("Server", "Server data processing start").log();
+        dataProcessingThread = new Thread(new DataProcessingThread());
+        dataProcessingThread.start();
     }
 }
