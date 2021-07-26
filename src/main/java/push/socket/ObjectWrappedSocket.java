@@ -1,4 +1,4 @@
-package push.server.socket;
+package push.socket;
 
 import push.packet.DataPacket;
 import push.packet.NullPacket;

@@ -1,6 +1,6 @@
 package push.server.repository;
 
-import push.server.socket.WrappedSocket;
+import push.socket.WrappedSocket;
 
 import java.util.HashMap;
 import java.util.List;

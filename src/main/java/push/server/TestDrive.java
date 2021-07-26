@@ -1,5 +1,6 @@
 package push.server;
 
+import push.client.manager.ClientManager;
 import push.server.manager.ServerManager;
 import push.server.repository.WrappedSocketRepository;
 
@@ -10,6 +11,10 @@ public class TestDrive {
         serverManager.setRepository(new WrappedSocketRepository());
         serverManager.bound(3333);
         serverManager.listen();
-        serverManager.DataProcessing();
+        serverManager.process();
+
+        ClientManager.use();
+        ClientManager clientManager = ClientManager.instance;
+        clientManager.connect("127.0.0.1", 3333);
     }
 }

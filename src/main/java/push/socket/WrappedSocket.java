@@ -1,4 +1,4 @@
-package push.server.socket;
+package push.socket;
 
 public interface WrappedSocket {
 

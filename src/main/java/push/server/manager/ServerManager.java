@@ -1,7 +1,9 @@
 package push.server.manager;
 
-import push.server.log.LogFormat;
+import push.log.LogFormat;
 import push.server.repository.WrappedSocketRepository;
+import push.server.thread.ServerProcessingThread;
+import push.server.thread.ListenThread;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -10,7 +12,7 @@ public class ServerManager {
 
     private ServerSocket serverSocket;
     private Thread listenThread;
-    private Thread dataProcessingThread;
+    private Thread serverProcessingThread;
 
     public static ServerManager instance;
     public WrappedSocketRepository repository;
@@ -44,9 +46,9 @@ public class ServerManager {
         listenThread.start();
     }
 
-    public void DataProcessing(){
+    public void process(){
         new LogFormat("Server", "Server data processing start").log();
-        dataProcessingThread = new Thread(new DataProcessingThread());
-        dataProcessingThread.start();
+        serverProcessingThread = new Thread(new ServerProcessingThread());
+        serverProcessingThread.start();
     }
 }

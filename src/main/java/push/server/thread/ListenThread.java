@@ -1,8 +1,9 @@
-package push.server.manager;
+package push.server.thread;
 
-import push.server.log.LogFormat;
-import push.server.socket.ObjectWrappedSocket;
-import push.server.socket.WrappedSocket;
+import push.log.LogFormat;
+import push.server.manager.ServerManager;
+import push.socket.ObjectWrappedSocket;
+import push.socket.WrappedSocket;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -18,7 +19,7 @@ public class ListenThread implements Runnable{
                 Socket socket = serverManager.getServerSocket().accept();
                 WrappedSocket wrappedSocket = new ObjectWrappedSocket(socket);
                 serverManager.repository.wrappedSocketList.add(wrappedSocket);
-                new LogFormat("ServerListen", "Client connect, Connected : "
+                new LogFormat("Server", "Client connect, Connected : "
                         + serverManager.repository.wrappedSocketList.size()).log();
             } catch (IOException e) {
                 e.printStackTrace();

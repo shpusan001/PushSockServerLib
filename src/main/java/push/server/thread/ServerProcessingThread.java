@@ -1,12 +1,14 @@
-package push.server.manager;
+package push.server.thread;
 
 import push.packet.Packet;
-import push.server.log.LogFormat;
+import push.log.LogFormat;
+import push.server.service.ServerObjectRecieveService;
+import push.server.manager.ServerManager;
 import push.server.repository.WrappedSocketRepository;
-import push.server.socket.WrappedSocket;
+import push.socket.WrappedSocket;
 
 
-public class DataProcessingThread implements Runnable {
+public class ServerProcessingThread implements Runnable {
     ServerManager serverManager = ServerManager.instance;
     WrappedSocketRepository repository = ServerManager.instance.repository;
     @Override
@@ -29,7 +31,7 @@ public class DataProcessingThread implements Runnable {
             for (WrappedSocket wrappedSocket : repository.wrappedSocketList) {
                 Object data = wrappedSocket.recieve();
                 Packet packet = (Packet) data;
-                RecieveDataProcessing.instance.process(wrappedSocket, packet);
+                ServerObjectRecieveService.instance.process(wrappedSocket, packet);
             }
         }
     }
