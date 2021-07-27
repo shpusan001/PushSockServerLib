@@ -33,10 +33,10 @@ public class ServerObjectRecieveService {
     private void order_UUID(WrappedSocket wrappedSocket, Packet packet){
         wrappedSocket.setSocketId(packet.getMessage());
         serverManager.repository.RegisteredSocketMap.put(packet.getMessage(), wrappedSocket);
-        new LogFormat("Server", "{" + wrappedSocket.getSocketId() + "} is registered").log();
+        new LogFormat(packet.getTag(), "{" + wrappedSocket.getSocketId() + "} is registered").log();
     }
 
     private void order_NOTICE(WrappedSocket wrappedSocket, Packet packet){
-        new LogFormat("Server", "{" + wrappedSocket.getSocketId() + "} => Server : " + packet.getMessage()).log();
+        new LogFormat(packet.getTag(), "{" + wrappedSocket.getSocketId() + "} => Server : " + packet.getMessage()).log();
     }
 }
