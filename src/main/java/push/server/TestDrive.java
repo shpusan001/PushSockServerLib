@@ -66,11 +66,11 @@ public class TestDrive {
                 //
 
                 //Send To Server
-                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "bad"));
-                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "ugly"));
-                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "poop"));
-                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "pee"));
-                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "dummy"));
+                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "bad"));
+                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "ugly"));
+                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "poop"));
+                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "pee"));
+                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "dummy"));
                 //
 
                 try {
@@ -99,7 +99,7 @@ public class TestDrive {
                  */
 
                 //Send To Server
-                clientManager.getSocket().send(new DataPacket("TRASHTALK", "NOTICE", "sticky"));
+                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "sticky"));
             }
         }).start();
 

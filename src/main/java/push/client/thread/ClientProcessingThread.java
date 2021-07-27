@@ -13,27 +13,32 @@ public class ClientProcessingThread implements Runnable {
 
     @Override
     public void run() {
-        while(!Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
             //connection check
-            try {
-                if(!ClientManager.instance.getSocket().isConnect()){
-                    new LogFormat("Client", "Server disconnected, try reconnect after 3s").log();
-                    try {
-                        Thread.sleep(3000);
-                        ClientManager.instance.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port,
-                                SockConfiguration.instance.id);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }else {
+                if (ClientManager.instance.getSocket() != null) {
+                    if (!ClientManager.instance.getSocket().isConnect()) {
+                        tryReconnect();
+                    } else {
                     //recieve data processing
                     Object data = clientManager.getSocket().recieve();
                     Packet packet = (Packet) data;
                     ClientObjectRecieveService.instance.process(clientManager.getSocket(), packet);
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } else {
+                tryReconnect();
             }
+        }
+    }
+
+    // reconnect method
+    private void tryReconnect() {
+        try {
+            new LogFormat("Client", "Server disconnected, try reconnect after 3s").log();
+            Thread.sleep(3000);
+            ClientManager.instance.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port,
+                    SockConfiguration.instance.id);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -2,11 +2,14 @@ package push.client.manager;
 
 import push.client.thread.ClientProcessingThread;
 import push.log.LogFormat;
+import push.packet.Packet;
 import push.socket.ObjectWrappedSocket;
 import push.socket.WrappedSocket;
 
+import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Optional;
 
 public class ClientManager {
 
@@ -17,7 +20,7 @@ public class ClientManager {
     public static ClientManager instance;
 
     public WrappedSocket getSocket() {
-        return wrappedSocket;
+            return wrappedSocket;
     }
 
     public static void use(){
@@ -33,7 +36,6 @@ public class ClientManager {
             wrappedSocket.send("UUID", "UUID", wrappedSocket.getSocketId());
             new LogFormat("Client", "connected, id ={" + id + "}").log();
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -41,5 +43,11 @@ public class ClientManager {
         new LogFormat("Client", "Client data processing start").log();
         clientProcessingThread = new Thread(new ClientProcessingThread());
         clientProcessingThread.start();
+    }
+
+    public void send(Packet packet){
+        if(wrappedSocket!=null){
+            wrappedSocket.send(packet);
+        }
     }
 }

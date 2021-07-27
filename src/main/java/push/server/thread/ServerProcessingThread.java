@@ -18,40 +18,36 @@ public class ServerProcessingThread implements Runnable {
             //connection check
             //recieve data processing
             for (WrappedSocket wrappedSocket : repository.wrappedSocketList) {
-                try {
-                    if (!wrappedSocket.isConnect()) {
-                        /**
-                         * Socket Disconnect Case
-                         */
+                if (!wrappedSocket.isConnect()) {
+                    /**
+                     * Socket Disconnect Case
+                     */
 
-                        //Socket in list is deleted
-                        repository.wrappedSocketList.remove(wrappedSocket);
+                    //Socket in list is deleted
+                    repository.wrappedSocketList.remove(wrappedSocket);
 
-                        //Socket in map is deleted
-                        if (repository.RegisteredSocketMap.containsKey(wrappedSocket.getSocketId())) {
-                            repository.RegisteredSocketMap.remove(wrappedSocket.getSocketId());
-                        }
-
-                        //Socket is closed
-                        wrappedSocket.close();
-
-                        new LogFormat("Server", "Client disconnected, SockID : " + wrappedSocket.getSocketId()).log();
-                    }else{
-                        /**
-                         * Socket Connect Case
-                         */
-
-                        //Recieve data for packet
-                        Packet packet = (Packet) wrappedSocket.recieve();
-
-                        //if Null => NullPacket
-                        if (packet == null) packet = new NullPacket();
-
-                        //Packet Processing for order
-                        ServerObjectRecieveService.instance.process(wrappedSocket, packet);
+                    //Socket in map is deleted
+                    if (repository.RegisteredSocketMap.containsKey(wrappedSocket.getSocketId())) {
+                        repository.RegisteredSocketMap.remove(wrappedSocket.getSocketId());
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+
+                    //Socket is closed
+                    wrappedSocket.close();
+
+                    new LogFormat("Server", "Client disconnected, SockID : " + wrappedSocket.getSocketId()).log();
+                }else{
+                    /**
+                     * Socket Connect Case
+                     */
+
+                    //Recieve data for packet
+                    Packet packet = (Packet) wrappedSocket.recieve();
+
+                    //if Null => NullPacket
+                    if (packet == null) packet = new NullPacket();
+
+                    //Packet Processing for order
+                    ServerObjectRecieveService.instance.process(wrappedSocket, packet);
                 }
             }
         }
