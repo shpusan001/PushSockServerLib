@@ -18,19 +18,19 @@ public class ClientTestDrive {
 
         ClientManager.use();
         ClientManager clientManager = ClientManager.instance;
-        //clientManager.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port, uuid);
+        clientManager.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port, uuid);
         clientManager.process();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-
+        /*
         List<ClientManager> clist = new LinkedList<>();
         for (int i = 0; i < 8000; i++) {
             clist.add(new ClientManager());
         }
         for (ClientManager c : clist) {
             c.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port, UUID.randomUUID().toString());
-        }
+        }*/
 
         while(true){
 
