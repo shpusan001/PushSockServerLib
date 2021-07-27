@@ -1,8 +1,8 @@
-#Pusha
+# Pusha
 
 ---
 
-##개요
+## 개요
 >TCP소켓통신기반의 푸시서버구축 라이브러리입니다. 이 라이브러리는 푸시 서버 구축을 쉽게 만들어 줍니다.  
 >   
 > + 준수한 성능 ( [CPU : i5-7200U (2.5GHz), IntelliJ IDEA 2GB 환경]
@@ -46,9 +46,11 @@ SockConfiguration.instance.id = "475b8eeb-a7ee-4cb4-ab2f-788ae161c7ba"; // Strin
       "{" + wrappedSocket.getSocketId() + "} 
       > => Server : " + packet.getMessage()).log();
 
-> + 설정 시 변경이 필요한 클래스
->  + 서버측 설정 : pusha.server.service.ServerObjectRecieveService 클래스
->  + 클라이언트측 설정 : pusha.client.service.ClientObjectRecieveService 클래스
+
+> 설정 시 변경이 필요한 클래스
+>  + 서버측 설정 : push.server.service.ServerObjectRecieveService 클래스
+>  + 클라이언트측 설정 : push.client.service.ClientObjectRecieveService 클래스
+
  
 ```java
 public class ServerObjectRecieveService {
@@ -143,13 +145,13 @@ ServerManager.instance.process();
 ### 서버 사용
 
 1. 특정 클라이언트에 데이터 전송
-> + DataPacket에 tag, order message를 주입해서 생성
+> DataPacket에 tag, order message를 주입해서 생성
 >  + tag : 태그 
 >  + order : 명령, 클라이언트에서 식별 후 명령 실행에 사용
 >  + message : 전송할 메시지 
 > 
 > 
-> + 패킷 종류
+> 패킷 종류
 >  + NullPacket : 내부에 공백이 들어간 패킷
 >  + DataPacket : 데이터가 들어있는 패킷, 생성할 때 데이터 주입 가능
 ```java
@@ -188,13 +190,13 @@ ClientManager.instance.process();
 
 ### 클라이언트 사용
 1. 서버에 데이터 전송
-> + DataPacket에 tag, order message를 주입해서 생성
+> DataPacket에 tag, order message를 주입해서 생성
     >  + tag : 태그
 >  + order : 명령, 클라이언트에서 식별 후 명령 실행에 사용
 >  + message : 전송할 메시지
 >
 >
-> + 패킷 종류 
+> 패킷 종류 
 >  + NullPacket : 내부에 공백이 들어간 패킷
 >  + DataPacket : 데이터가 들어있는 패킷, 생성할 때 데이터 주입 가능
 ```java
