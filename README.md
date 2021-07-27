@@ -190,7 +190,7 @@ ClientManager.instance.process();
 ### 클라이언트 사용
 1. 서버에 데이터 전송
 > DataPacket에 tag, order message를 주입해서 생성
-    >  + tag : 태그
+>  + tag : 태그
 >  + order : 명령, 클라이언트에서 식별 후 명령 실행에 사용
 >  + message : 전송할 메시지
 >
