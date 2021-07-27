@@ -37,6 +37,6 @@ public class ServerObjectRecieveService {
     }
 
     private void order_NOTICE(WrappedSocket wrappedSocket, Packet packet){
-        new LogFormat("Client", "{" + wrappedSocket.getSocketId() + "} => Server : " + packet.getMessage()).log();
+        new LogFormat("Server", "{" + wrappedSocket.getSocketId() + "} => Server : " + packet.getMessage()).log();
     }
 }
