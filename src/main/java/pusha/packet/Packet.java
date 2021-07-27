@@ -1,4 +1,4 @@
-package push.packet;
+package pusha.packet;
 
 public interface Packet {
     public String getTag();

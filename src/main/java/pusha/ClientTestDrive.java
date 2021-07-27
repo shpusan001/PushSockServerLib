@@ -1,14 +1,11 @@
-package push;
+package pusha;
 
-import push.SockConfiguration;
-import push.client.manager.ClientManager;
-import push.packet.DataPacket;
+import pusha.client.manager.ClientManager;
+import pusha.packet.DataPacket;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.UUID;
 
 public class ClientTestDrive {

@@ -1,9 +1,9 @@
-package push.client.service;
+package pusha.client.service;
 
-import push.log.LogFormat;
-import push.packet.Packet;
-import push.server.manager.ServerManager;
-import push.socket.WrappedSocket;
+import pusha.log.LogFormat;
+import pusha.packet.Packet;
+import pusha.server.manager.ServerManager;
+import pusha.socket.WrappedSocket;
 
 public class ClientObjectRecieveService {
 

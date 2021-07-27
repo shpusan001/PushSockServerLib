@@ -1,9 +1,8 @@
-package push;
+package pusha;
 
-import push.SockConfiguration;
-import push.packet.DataPacket;
-import push.server.manager.ServerManager;
-import push.server.repository.WrappedSocketRepository;
+import pusha.packet.DataPacket;
+import pusha.server.manager.ServerManager;
+import pusha.server.repository.WrappedSocketRepository;
 
 import java.io.BufferedReader;
 import java.io.IOException;

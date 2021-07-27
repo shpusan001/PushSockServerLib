@@ -1,15 +1,13 @@
-package push.client.manager;
+package pusha.client.manager;
 
-import push.client.thread.ClientProcessingThread;
-import push.log.LogFormat;
-import push.packet.Packet;
-import push.socket.ObjectWrappedSocket;
-import push.socket.WrappedSocket;
+import pusha.client.thread.ClientProcessingThread;
+import pusha.log.LogFormat;
+import pusha.packet.Packet;
+import pusha.socket.ObjectWrappedSocket;
+import pusha.socket.WrappedSocket;
 
-import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Optional;
 
 public class ClientManager {
 

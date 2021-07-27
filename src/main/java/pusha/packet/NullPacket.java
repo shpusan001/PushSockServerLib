@@ -1,4 +1,4 @@
-package push.packet;
+package pusha.packet;
 
 import java.io.Serializable;
 

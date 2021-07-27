@@ -1,8 +1,8 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import push.packet.DataPacket;
-import push.packet.NullPacket;
-import push.packet.Packet;
+import pusha.packet.DataPacket;
+import pusha.packet.NullPacket;
+import pusha.packet.Packet;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

@@ -1,4 +1,4 @@
-package push.log;
+package pusha.log;
 
 import java.time.LocalDateTime;
 

@@ -1,10 +1,10 @@
-package push.server;
+package pusha.server;
 
-import push.SockConfiguration;
-import push.client.manager.ClientManager;
-import push.packet.DataPacket;
-import push.server.manager.ServerManager;
-import push.server.repository.WrappedSocketRepository;
+import pusha.SockConfiguration;
+import pusha.client.manager.ClientManager;
+import pusha.packet.DataPacket;
+import pusha.server.manager.ServerManager;
+import pusha.server.repository.WrappedSocketRepository;
 
 import java.util.UUID;
 

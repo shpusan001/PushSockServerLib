@@ -1,4 +1,4 @@
-package push;
+package pusha;
 
 public class SockConfiguration {
 

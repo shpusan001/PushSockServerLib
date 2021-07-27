@@ -1,6 +1,6 @@
-package push.socket;
+package pusha.socket;
 
-import push.packet.Packet;
+import pusha.packet.Packet;
 
 public interface WrappedSocket {
 

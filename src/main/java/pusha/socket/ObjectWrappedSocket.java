@@ -1,8 +1,8 @@
-package push.socket;
+package pusha.socket;
 
-import push.packet.DataPacket;
-import push.packet.NullPacket;
-import push.packet.Packet;
+import pusha.packet.DataPacket;
+import pusha.packet.NullPacket;
+import pusha.packet.Packet;
 
 import java.io.*;
 import java.net.Socket;
