@@ -199,7 +199,7 @@ ClientManager.instance.process();
 >  + NullPacket : 내부에 공백이 들어간 패킷
 >  + DataPacket : 데이터가 들어있는 패킷, 생성할 때 데이터 주입 가능
 ```java
-ClientManager.instance.send(id, new DataPacket(tag, order, message));
+ClientManager.instance.send(new DataPacket(tag, order, message));
 ```
 
 ---
