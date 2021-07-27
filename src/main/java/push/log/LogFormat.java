@@ -3,6 +3,9 @@ package push.log;
 import java.time.LocalDateTime;
 
 public class LogFormat {
+
+    final static boolean belog = true;
+
     String time;
     String tag;
     String log;
@@ -14,7 +17,7 @@ public class LogFormat {
     }
 
     public void log(){
-        System.out.println("[" + time + "] " + "[" + tag + "] " + log);
+        if(belog) System.out.println("[" + time + "] " + "[" + tag + "] " + log);
     }
 
     @Override

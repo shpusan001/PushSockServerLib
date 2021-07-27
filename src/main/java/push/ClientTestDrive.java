@@ -7,6 +7,8 @@ import push.packet.DataPacket;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 
 public class ClientTestDrive {
@@ -16,13 +18,27 @@ public class ClientTestDrive {
 
         ClientManager.use();
         ClientManager clientManager = ClientManager.instance;
-        clientManager.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port, uuid);
+        //clientManager.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port, uuid);
         clientManager.process();
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+
+        List<ClientManager> clist = new LinkedList<>();
+        for (int i = 0; i < 8000; i++) {
+            clist.add(new ClientManager());
+        }
+        for (ClientManager c : clist) {
+            c.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port, UUID.randomUUID().toString());
+        }
+
         while(true){
-            System.out.println("Write <TAG> <ORDER> <MESSAGE>");
+
+            /**
+             * Write <TAG> <ORDER> <MESSAGE>
+             * be send
+             */
+
             String input;
             try {
                 input = br.readLine();

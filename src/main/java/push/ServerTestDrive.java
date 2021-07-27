@@ -21,7 +21,12 @@ public class ServerTestDrive {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         while(true){
-            System.out.println("Write <TAG> <ORDER> <MESSAGE>");
+
+            /**
+             * Write <ID> <TAG> <ORDER> <MESSAGE>
+             * be send
+             */
+
             String input;
             try {
                 input = br.readLine();
