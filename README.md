@@ -143,13 +143,13 @@ ServerManager.instance.process();
 ### 서버 사용
 
 1. 특정 클라이언트에 데이터 전송
-> + DataPacket에 tag, order message를 주입해서 생성
+> DataPacket에 tag, order message를 주입해서 생성
 >  + tag : 태그 
 >  + order : 명령, 클라이언트에서 식별 후 명령 실행에 사용
 >  + message : 전송할 메시지 
 > 
 > 
-> + 패킷 종류
+> 패킷 종류
 >  + NullPacket : 내부에 공백이 들어간 패킷
 >  + DataPacket : 데이터가 들어있는 패킷, 생성할 때 데이터 주입 가능
 ```java
@@ -188,13 +188,13 @@ ClientManager.instance.process();
 
 ### 클라이언트 사용
 1. 서버에 데이터 전송
-> + DataPacket에 tag, order message를 주입해서 생성
+> DataPacket에 tag, order message를 주입해서 생성
     >  + tag : 태그
 >  + order : 명령, 클라이언트에서 식별 후 명령 실행에 사용
 >  + message : 전송할 메시지
 >
 >
-> + 패킷 종류 
+> 패킷 종류 
 >  + NullPacket : 내부에 공백이 들어간 패킷
 >  + DataPacket : 데이터가 들어있는 패킷, 생성할 때 데이터 주입 가능
 ```java
