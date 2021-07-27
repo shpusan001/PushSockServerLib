@@ -46,7 +46,7 @@ SockConfiguration.instance.id = "475b8eeb-a7ee-4cb4-ab2f-788ae161c7ba"; // Strin
       "{" + wrappedSocket.getSocketId() + "} 
       > => Server : " + packet.getMessage()).log();
 
-> + 설정 시 변경이 필요한 클래스
+> 설정 시 변경이 필요한 클래스
 >  + 서버측 설정 : push.server.service.ServerObjectRecieveService 클래스
 >  + 클라이언트측 설정 : push.client.service.ClientObjectRecieveService 클래스
  
