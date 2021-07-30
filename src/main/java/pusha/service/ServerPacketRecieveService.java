@@ -30,7 +30,7 @@ public class ServerPacketRecieveService implements RecieveService{
     public void process(WrappedSocket wrappedSocket, Object object){
         Packet packet = (Packet) object;
         Order order = orderMap.get(packet.getOrder());
-        order.excute(wrappedSocket, packet);
+        if(order!=null) order.excute(wrappedSocket, packet);
     }
 
     @Override
