@@ -14,7 +14,16 @@ import java.util.UUID;
 public class MutiConnectClientTestDrive {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("start");
-        ClientConfiguration.instance.ip = "127.0.0.1";
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.print("Host Ip:");
+        try {
+            ClientConfiguration.instance.ip = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         List<ClientManager> clist = new LinkedList<>();
         int count =0;
         for (int i = 0; i < 5000; i++) {
@@ -32,7 +41,6 @@ public class MutiConnectClientTestDrive {
             c.processThis();
         }
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while (true){
             String input;
             try {
