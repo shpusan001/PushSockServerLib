@@ -25,11 +25,9 @@ public class ObjectWrappedSocket implements WrappedSocket {
         this.checkingBitSocket = checkingBitSocket;
 
         try {
-                objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
-                objectInputStream = new ObjectInputStream(this.socket.getInputStream());
-
+            objectOutputStream = new ObjectOutputStream(this.socket.getOutputStream());
+            objectInputStream = new ObjectInputStream(this.socket.getInputStream());
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

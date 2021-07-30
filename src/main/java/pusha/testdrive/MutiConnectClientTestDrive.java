@@ -10,7 +10,7 @@ import java.util.UUID;
 public class MutiConnectClientTestDrive {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("start");
-        ClientConfiguration.instance.ip = "211.117.196.83";
+        ClientConfiguration.instance.ip = "127.0.0.1";
         List<ClientManager> clist = new LinkedList<>();
         int count =0;
         for (int i = 0; i < 10000; i++) {

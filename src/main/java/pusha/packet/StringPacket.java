@@ -8,9 +8,9 @@ public class StringPacket implements Serializable, Packet  {
     String message;
 
     public StringPacket(String tag, String order, String message) {
-        tag = tag;
-        order = order;
-        message = message;
+        this.tag = tag;
+        this.order = order;
+        this.message = message;
     }
 
     @Override
