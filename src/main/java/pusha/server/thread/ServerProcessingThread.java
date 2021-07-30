@@ -3,7 +3,7 @@ package pusha.server.thread;
 import pusha.log.SoutLog;
 import pusha.server.manager.ServerManager;
 import pusha.server.repository.SocketRepository;
-import pusha.service.ServerObjectRecieveService;
+import pusha.service.ServerPacketRecieveService;
 import pusha.socket.WrappedSocket;
 
 import java.util.HashMap;
@@ -74,7 +74,7 @@ public class ServerProcessingThread implements Runnable {
             Object packet = wrappedSocket.recieve();
 
             //Packet Processing for order
-            ServerObjectRecieveService.instance.process(wrappedSocket, packet);
+            ServerPacketRecieveService.instance.process(wrappedSocket, packet);
 
             //Remove This Thread From recieveThreadMap
             recieveThreadMap.remove(wrappedSocket);

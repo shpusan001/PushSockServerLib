@@ -47,8 +47,8 @@ SockConfiguration.instance.id = "475b8eeb-a7ee-4cb4-ab2f-788ae161c7ba"; // Strin
 
 
 > 설정 시 변경이 필요한 클래스
->  + 서버측 설정 : pusha.service.ServerObjectRecieveService 클래스
->  + 클라이언트측 설정 : pusha.service.ClientObjectRecieveService 클래스
+>  + 서버측 설정 : pusha.service.ServerPacketRecieveService 클래스
+>  + 클라이언트측 설정 : pusha.service.ClientPacketRecieveService 클래스
 
  
 ```java

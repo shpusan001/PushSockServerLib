@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class WrappedSocketRepository implements SocketRepository{
+public class MemorySocketRepository implements SocketRepository{
 
     public List<WrappedSocket> wrappedSocketList = new CopyOnWriteArrayList<>();
 

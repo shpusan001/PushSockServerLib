@@ -3,7 +3,7 @@ package pusha.testdrive;
 import pusha.Configuration.ServerConfiguration;
 import pusha.packet.DataPacket;
 import pusha.server.manager.ServerManager;
-import pusha.server.repository.WrappedSocketRepository;
+import pusha.server.repository.MemorySocketRepository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class ServerTestDrive {
     public static void main(String[] args) {
         ServerManager.use();
         ServerManager serverManager = ServerManager.instance;
-        serverManager.setRepository(new WrappedSocketRepository());
+        serverManager.setRepository(new MemorySocketRepository());
         serverManager.bound(ServerConfiguration.instance.port);
         serverManager.listen();
         serverManager.process();

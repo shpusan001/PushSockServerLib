@@ -2,7 +2,7 @@ package pusha.client.thread;
 
 import pusha.Configuration.ClientConfiguration;
 import pusha.client.manager.ClientManager;
-import pusha.service.ClientObjectRecieveService;
+import pusha.service.ClientPacketRecieveService;
 import pusha.log.SoutLog;
 
 
@@ -24,7 +24,7 @@ public class ClientProcessingThread implements Runnable {
                     } else {
                     //recieve data processing
                     Object packet = clientManager.getSocket().recieve();
-                    ClientObjectRecieveService.instance.process(clientManager.getSocket(), packet);
+                    ClientPacketRecieveService.instance.process(clientManager.getSocket(), packet);
                 }
             } else {
                 tryReconnect();
