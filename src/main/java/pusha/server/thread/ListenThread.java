@@ -1,6 +1,6 @@
 package pusha.server.thread;
 
-import pusha.log.LogFormat;
+import pusha.log.SoutLog;
 import pusha.server.manager.ServerManager;
 import pusha.socket.ObjectWrappedSocket;
 import pusha.socket.WrappedSocket;
@@ -19,9 +19,9 @@ public class ListenThread implements Runnable{
                 Socket socket = serverManager.getServerSocket().accept();
                 Socket bitCheckSocket = serverManager.getServerBitCheckSocket().accept();
                 WrappedSocket wrappedSocket = new ObjectWrappedSocket(socket, bitCheckSocket, true);
-                serverManager.repository.wrappedSocketList.add(wrappedSocket);
-                new LogFormat("Server", "Client connect, Connected : "
-                        + serverManager.repository.wrappedSocketList.size()).log();
+                serverManager.repository.addOnList(wrappedSocket);
+                new SoutLog("Server", "Client connect, Connected : "
+                        + serverManager.repository.sizeOnList()).log();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -2,6 +2,8 @@ package pusha.socket;
 
 import pusha.packet.Packet;
 
+import java.net.Socket;
+
 public interface WrappedSocket {
 
     public void send(String tag, String order, String data);
@@ -10,6 +12,7 @@ public interface WrappedSocket {
     public boolean isConnect();
     public void close();
 
+    public Socket getSocket();
     public void setSocketId(String socketId);
     public String getSocketId();
 }

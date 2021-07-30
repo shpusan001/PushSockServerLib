@@ -1,11 +1,11 @@
-package pusha.client.service;
+package pusha.service;
 
-import pusha.log.LogFormat;
+import pusha.log.SoutLog;
 import pusha.packet.Packet;
 import pusha.server.manager.ServerManager;
 import pusha.socket.WrappedSocket;
 
-public class ClientObjectRecieveService {
+public class ClientObjectRecieveService implements RecieveService{
 
     ServerManager serverManager = ServerManager.instance;
 
@@ -23,13 +23,19 @@ public class ClientObjectRecieveService {
      *         function : order_BROADCAST(WrappedSocket wrappedSocket, Packet packet)
      */
 
-    public void process(WrappedSocket wrappedSocket, Packet packet){
+    @Override
+    public void process(WrappedSocket wrappedSocket, Object object){
+        Packet packet;
+        if(object instanceof Packet) packet = (Packet) object;
+        else {
+            return;
+        }
         switch(packet.getOrder()){
             case "NOTICE" : order_NOTICE(wrappedSocket, packet); break;
         }
     }
 
     private void order_NOTICE(WrappedSocket wrappedSocket, Packet packet){
-        new LogFormat(packet.getTag(), "Server => {" + wrappedSocket.getSocketId() + "} : " + packet.getMessage()).log();
+        new SoutLog(packet.getTag(), "Server => {" + wrappedSocket.getSocketId() + "} : " + packet.getMessage()).log();
     }
 }

@@ -1,7 +1,7 @@
 package pusha.client.manager;
 
 import pusha.client.thread.ClientProcessingThread;
-import pusha.log.LogFormat;
+import pusha.log.SoutLog;
 import pusha.packet.Packet;
 import pusha.socket.ObjectWrappedSocket;
 import pusha.socket.WrappedSocket;
@@ -32,14 +32,21 @@ public class ClientManager {
             wrappedSocket = new ObjectWrappedSocket(socket, checkingBitSocket, false);
             wrappedSocket.setSocketId(id);
             wrappedSocket.send("UUID", "UUID", wrappedSocket.getSocketId());
-            new LogFormat("Client", "connected, id ={" + id + "}").log();
+            new SoutLog("Client", "connected, id ={" + id + "}").log();
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public void process(){
-        new LogFormat("Client", "Client data processing start").log();
-        clientProcessingThread = new Thread(new ClientProcessingThread());
+        new SoutLog("Client", "Client data processing start").log();
+        clientProcessingThread = new Thread(new ClientProcessingThread(instance));
+        clientProcessingThread.start();
+    }
+
+    public void processThis(){
+        new SoutLog("Client", "Client[" + wrappedSocket.getSocketId() + "] data processing start").log();
+        clientProcessingThread = new Thread(new ClientProcessingThread(this));
         clientProcessingThread.start();
     }
 

@@ -54,6 +54,11 @@ public class ObjectWrappedSocket implements WrappedSocket {
     }
 
     @Override
+    public Socket getSocket(){
+        return socket;
+    }
+
+    @Override
     public void setSocketId(String socketId) {
         this.socketId = socketId;
     }

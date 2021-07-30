@@ -1,6 +1,7 @@
-package pusha.server;
+package pusha.testdrive;
 
-import pusha.SockConfiguration;
+import pusha.Configuration.ClientConfiguration;
+import pusha.Configuration.ServerConfiguration;
 import pusha.client.manager.ClientManager;
 import pusha.packet.DataPacket;
 import pusha.server.manager.ServerManager;
@@ -20,9 +21,9 @@ public class TestDrive {
          */
 
         //Configuration's Id Initialize To UUID
-        SockConfiguration.instance.id = UUID.randomUUID().toString();
+        ClientConfiguration.instance.id = UUID.randomUUID().toString();
 
-        String uuid = SockConfiguration.instance.id;
+        String uuid = ClientConfiguration.instance.id;
 
         //Server Thread
         new Thread(new Runnable() {
@@ -32,7 +33,7 @@ public class TestDrive {
                 ServerManager.use();
                 ServerManager serverManager = ServerManager.instance;
                 serverManager.setRepository(new WrappedSocketRepository());
-                serverManager.bound(SockConfiguration.instance.port);
+                serverManager.bound(ServerConfiguration.instance.port);
                 serverManager.listen();
                 serverManager.process();
                 //
@@ -61,7 +62,7 @@ public class TestDrive {
                 //Client Setting
                 ClientManager.use();
                 ClientManager clientManager = ClientManager.instance;
-                clientManager.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port, uuid);
+                clientManager.connect(ClientConfiguration.instance.ip, ClientConfiguration.instance.port, uuid);
                 clientManager.process();
                 //
 

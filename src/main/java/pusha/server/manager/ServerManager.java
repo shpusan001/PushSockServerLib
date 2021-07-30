@@ -1,8 +1,8 @@
 package pusha.server.manager;
 
-import pusha.log.LogFormat;
+import pusha.log.SoutLog;
 import pusha.packet.Packet;
-import pusha.server.repository.WrappedSocketRepository;
+import pusha.server.repository.SocketRepository;
 import pusha.server.thread.ListenThread;
 import pusha.server.thread.ServerProcessingThread;
 import pusha.socket.WrappedSocket;
@@ -18,7 +18,7 @@ public class ServerManager {
     private Thread serverProcessingThread;
 
     public static ServerManager instance;
-    public WrappedSocketRepository repository;
+    public SocketRepository repository;
 
     private ServerManager(){}
 
@@ -34,7 +34,7 @@ public class ServerManager {
         return serverBitCheckSocket;
     }
 
-    public void setRepository(WrappedSocketRepository repository){
+    public void setRepository(SocketRepository repository){
         this.repository = repository;
     }
 
@@ -42,29 +42,27 @@ public class ServerManager {
         try {
             serverSocket = new ServerSocket(port);
             serverBitCheckSocket = new ServerSocket(port+1);
-            new LogFormat("Server", "Server bound, port: " + port).log();
+            new SoutLog("Server", "Server bound, port: " + port).log();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void listen(){
-        new LogFormat("Server", "Server listen").log();
+        new SoutLog("Server", "Server listen").log();
         listenThread = new Thread(new ListenThread());
         listenThread.start();
     }
 
     public void process(){
-        new LogFormat("Server", "Server data processing start").log();
+        new SoutLog("Server", "Server data processing start").log();
         serverProcessingThread = new Thread(new ServerProcessingThread());
         serverProcessingThread.start();
     }
 
     //Send The Packet To The Desired Target
     public void sendTarget(String id, Packet packet){
-        if(repository.RegisteredSocketMap.containsKey(id)){
-            WrappedSocket wrappedSocket = repository.RegisteredSocketMap.get(id);
-            wrappedSocket.send(packet);
-        }
+            WrappedSocket wrappedSocket = repository.getOnMap(id);
+            if(wrappedSocket!=null) wrappedSocket.send(packet);
     }
 }

@@ -1,13 +1,10 @@
-package pusha;
+package pusha.Configuration;
 
-public class SockConfiguration {
-
-    public static SockConfiguration instance = new SockConfiguration();
-
-    private SockConfiguration(){}
+public class ClientConfiguration {
+    public static ClientConfiguration instance = new ClientConfiguration();
 
     /**
-     * SOCKCOFIGURATION
+     * CLIENT CONFIGURATION
      * - ip : host
      * - port : host port
      * - id : unique identification number

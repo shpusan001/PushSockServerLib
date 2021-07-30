@@ -1,5 +1,6 @@
-package pusha;
+package pusha.testdrive;
 
+import pusha.Configuration.ClientConfiguration;
 import pusha.client.manager.ClientManager;
 import pusha.packet.DataPacket;
 
@@ -10,21 +11,21 @@ import java.util.UUID;
 
 public class ClientTestDrive {
     public static void main(String[] args) {
-        SockConfiguration.instance.id = UUID.randomUUID().toString();
-        String uuid = SockConfiguration.instance.id;
+        ClientConfiguration.instance.id = UUID.randomUUID().toString();
+        String uuid = ClientConfiguration.instance.id;
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.print("Host Ip:");
         try {
-            SockConfiguration.instance.ip = br.readLine();
+            ClientConfiguration.instance.ip = br.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         ClientManager.use();
         ClientManager clientManager = ClientManager.instance;
-        clientManager.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port, uuid);
+        clientManager.connect(ClientConfiguration.instance.ip, ClientConfiguration.instance.port, uuid);
         clientManager.process();
 
 

@@ -1,15 +1,18 @@
 package pusha.client.thread;
 
-import pusha.SockConfiguration;
+import pusha.Configuration.ClientConfiguration;
 import pusha.client.manager.ClientManager;
-import pusha.client.service.ClientObjectRecieveService;
-import pusha.log.LogFormat;
-import pusha.packet.Packet;
+import pusha.service.ClientObjectRecieveService;
+import pusha.log.SoutLog;
 
 
 public class ClientProcessingThread implements Runnable {
 
-    ClientManager clientManager = ClientManager.instance;
+    ClientManager clientManager;
+
+    public ClientProcessingThread(ClientManager clientManager){
+        this.clientManager = clientManager;
+    }
 
     @Override
     public void run() {
@@ -20,8 +23,7 @@ public class ClientProcessingThread implements Runnable {
                         tryReconnect();
                     } else {
                     //recieve data processing
-                    Object data = clientManager.getSocket().recieve();
-                    Packet packet = (Packet) data;
+                    Object packet = clientManager.getSocket().recieve();
                     ClientObjectRecieveService.instance.process(clientManager.getSocket(), packet);
                 }
             } else {
@@ -33,10 +35,10 @@ public class ClientProcessingThread implements Runnable {
     // reconnect method
     private void tryReconnect() {
         try {
-            new LogFormat("Client", "Server disconnected, try reconnect after 3s").log();
+            new SoutLog("Client", "Server disconnected, try reconnect after 3s").log();
             Thread.sleep(3000);
-            ClientManager.instance.connect(SockConfiguration.instance.ip, SockConfiguration.instance.port,
-                    SockConfiguration.instance.id);
+            ClientManager.instance.connect(ClientConfiguration.instance.ip, ClientConfiguration.instance.port,
+                    ClientConfiguration.instance.id);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

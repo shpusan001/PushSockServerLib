@@ -1,5 +1,6 @@
-package pusha;
+package pusha.testdrive;
 
+import pusha.Configuration.ServerConfiguration;
 import pusha.packet.DataPacket;
 import pusha.server.manager.ServerManager;
 import pusha.server.repository.WrappedSocketRepository;
@@ -13,7 +14,7 @@ public class ServerTestDrive {
         ServerManager.use();
         ServerManager serverManager = ServerManager.instance;
         serverManager.setRepository(new WrappedSocketRepository());
-        serverManager.bound(SockConfiguration.instance.port);
+        serverManager.bound(ServerConfiguration.instance.port);
         serverManager.listen();
         serverManager.process();
 
