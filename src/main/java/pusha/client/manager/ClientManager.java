@@ -8,6 +8,8 @@ import pusha.socket.WrappedSocket;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClientManager {
 
@@ -16,6 +18,8 @@ public class ClientManager {
     private Thread clientProcessingThread;
 
     public static ClientManager instance;
+
+    public static Map<String, WrappedSocket> clientMap = new HashMap<>();
 
     public WrappedSocket getSocket() {
             return wrappedSocket;
@@ -32,6 +36,7 @@ public class ClientManager {
             wrappedSocket = new ObjectWrappedSocket(socket, checkingBitSocket, false);
             wrappedSocket.setSocketId(id);
             wrappedSocket.send("UUID", "UUID", wrappedSocket.getSocketId());
+            clientMap.put(id, wrappedSocket);
             new SoutLog("Client", "connected, id ={" + id + "}").log();
         } catch (IOException e) {
             e.printStackTrace();

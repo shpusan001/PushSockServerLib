@@ -6,7 +6,7 @@ public class ObjectPacket implements Packet{
     String message;
     Object object;
 
-    public ObjectPacket(String tag, String order, String message, Object object) {
+    public ObjectPacket(String order, String tag, String message, Object object) {
         this.tag = tag;
         this.order = order;
         this.message = message;

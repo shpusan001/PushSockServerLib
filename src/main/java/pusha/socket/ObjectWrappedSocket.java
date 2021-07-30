@@ -34,7 +34,7 @@ public class ObjectWrappedSocket implements WrappedSocket {
     @Override
     public void send(String tag, String order, String data){
         try {
-            Packet packet = new StringPacket(tag, order, data);
+            Packet packet = new StringPacket(order, tag, data);
                 objectOutputStream.writeObject(packet);
                 objectOutputStream.reset();
         } catch (IOException e) {

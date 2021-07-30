@@ -49,7 +49,7 @@ public class ClientTestDrive {
             String tag = inputSplited[1];
             String message = inputSplited[2];
 
-            clientManager.send(new StringPacket(tag, order, message));
+            clientManager.send(new StringPacket(order, tag, message));
         }
     }
 }

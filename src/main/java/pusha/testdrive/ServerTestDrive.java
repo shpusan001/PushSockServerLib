@@ -41,7 +41,7 @@ public class ServerTestDrive {
             String tag = inputSplited[2];
             String message = inputSplited[3];
 
-            serverManager.sendTarget(id, new StringPacket(tag, order, message));
+            serverManager.sendTarget(id, new StringPacket(order, tag, message));
         }
     }
 }

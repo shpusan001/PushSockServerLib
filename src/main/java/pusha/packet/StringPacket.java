@@ -7,7 +7,7 @@ public class StringPacket implements Serializable, Packet  {
     String tag;
     String message;
 
-    public StringPacket(String tag, String order, String message) {
+    public StringPacket(String order, String tag, String message) {
         this.tag = tag;
         this.order = order;
         this.message = message;
