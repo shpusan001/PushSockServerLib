@@ -19,6 +19,7 @@ public class ServerManager {
 
     public static ServerManager instance;
     public SocketRepository repository;
+    public int connectedCount = 0;
 
     private ServerManager(){}
 

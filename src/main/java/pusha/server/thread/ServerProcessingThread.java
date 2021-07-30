@@ -39,6 +39,9 @@ public class ServerProcessingThread implements Runnable {
                     //Socket in list is deleted
                     repository.removeOnList(wrappedSocket);
 
+                    //Minus connected count
+                    ServerManager.instance.connectedCount--;
+
                     new SoutLog("Server", "Client disconnected, SockID : " + wrappedSocket.getSocketId()).log();
                 } else {
                     /**
@@ -50,6 +53,8 @@ public class ServerProcessingThread implements Runnable {
                     if (!recieveThreadMap.containsKey(wrappedSocket)) {
                         recieveThreadMap.put(wrappedSocket, new Thread(new Recieve(wrappedSocket)));
                         recieveThreadMap.get(wrappedSocket).start();
+
+                        repository.removeOnList(wrappedSocket); // remove on list temporarily
                     }
                 }
             }
@@ -78,6 +83,9 @@ public class ServerProcessingThread implements Runnable {
 
             //Remove This Thread From recieveThreadMap
             recieveThreadMap.remove(wrappedSocket);
+
+            //Add On List Back
+            repository.addOnList(wrappedSocket);
         }
     }
 }

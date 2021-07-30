@@ -18,8 +18,8 @@ public class ClientProcessingThread implements Runnable {
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             //connection check
-                if (ClientManager.instance.getSocket() != null) {
-                    if (!ClientManager.instance.getSocket().isConnect()) {
+                if (clientManager.getSocket() != null) {
+                    if (!clientManager.getSocket().isConnect()) {
                         tryReconnect();
                     } else {
                     //recieve data processing

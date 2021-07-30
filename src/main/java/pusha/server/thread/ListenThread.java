@@ -20,8 +20,9 @@ public class ListenThread implements Runnable{
                 Socket bitCheckSocket = serverManager.getServerBitCheckSocket().accept();
                 WrappedSocket wrappedSocket = new ObjectWrappedSocket(socket, bitCheckSocket, true);
                 serverManager.repository.addOnList(wrappedSocket);
+                serverManager.connectedCount++;
                 new SoutLog("Server", "Client connect, Connected : "
-                        + serverManager.repository.sizeOnList()).log();
+                        + serverManager.connectedCount).log();
             } catch (IOException e) {
                 e.printStackTrace();
             }

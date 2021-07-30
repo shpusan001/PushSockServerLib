@@ -13,13 +13,19 @@ public class MutiConnectClientTestDrive {
         ClientConfiguration.instance.ip = "127.0.0.1";
         List<ClientManager> clist = new LinkedList<>();
         int count =0;
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 5000; i++) {
             clist.add(new ClientManager());
         }
         for (ClientManager c : clist) {
             c.connect(ClientConfiguration.instance.ip, ClientConfiguration.instance.port, UUID.randomUUID().toString());
             count++;
             System.out.println(count);
+        }
+
+        Thread.sleep(3000);
+
+        for (ClientManager c : clist) {
+            c.processThis();
         }
 
         while (true){}
