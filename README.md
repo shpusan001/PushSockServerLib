@@ -1,6 +1,5 @@
-![Pusha_Title](https://user-images.githubusercontent.com/35298140/127688470-be9b3079-b8b5-4466-939e-a6addf264769.png)
 
-#
+<div id="title" align="center"><img width="400px" src="https://user-images.githubusercontent.com/35298140/127691911-8908a7fa-ce8e-4235-9b96-e90343221b9b.png"></div>
 
 ---
 
