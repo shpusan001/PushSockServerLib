@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pusha.packet.DataPacket;
+import pusha.packet.StringPacket;
 import pusha.packet.NullPacket;
 import pusha.packet.Packet;
 
@@ -25,7 +25,7 @@ public class ObjectStreamTest {
         ObjectInputStream cois = new ObjectInputStream(socketClient.getInputStream());
         ObjectInputStream sois = new ObjectInputStream(socketServer.getInputStream());
 
-        coos.writeObject(new DataPacket("tag", "order", "message"));
+        coos.writeObject(new StringPacket("tag", "order", "message"));
         Packet tmp = (Packet) sois.readObject();
         System.out.println(tmp.getMessage());
         coos.writeObject(new NullPacket());

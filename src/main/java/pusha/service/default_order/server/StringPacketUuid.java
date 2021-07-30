@@ -6,7 +6,7 @@ import pusha.server.manager.ServerManager;
 import pusha.service.default_order.Order;
 import pusha.socket.WrappedSocket;
 
-public class PacketUuid implements Order {
+public class StringPacketUuid implements Order {
     ServerManager serverManager = ServerManager.instance;
 
     @Override

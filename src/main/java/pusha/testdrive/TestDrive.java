@@ -1,9 +1,9 @@
 package pusha.testdrive;
 
-import pusha.Configuration.ClientConfiguration;
-import pusha.Configuration.ServerConfiguration;
+import pusha.configuration.ClientConfiguration;
+import pusha.configuration.ServerConfiguration;
 import pusha.client.manager.ClientManager;
-import pusha.packet.DataPacket;
+import pusha.packet.StringPacket;
 import pusha.server.manager.ServerManager;
 import pusha.server.repository.MemorySocketRepository;
 
@@ -45,11 +45,11 @@ public class TestDrive {
                 }
 
                 //Send To Client
-                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "hi"));
-                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "nice"));
-                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "good"));
-                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "exellent"));
-                serverManager.sendTarget(uuid, new DataPacket("GOODTALK", "NOTICE", "pretty"));
+                serverManager.sendTarget(uuid, new StringPacket("GOODTALK", "NOTICE", "hi"));
+                serverManager.sendTarget(uuid, new StringPacket("GOODTALK", "NOTICE", "nice"));
+                serverManager.sendTarget(uuid, new StringPacket("GOODTALK", "NOTICE", "good"));
+                serverManager.sendTarget(uuid, new StringPacket("GOODTALK", "NOTICE", "exellent"));
+                serverManager.sendTarget(uuid, new StringPacket("GOODTALK", "NOTICE", "pretty"));
                 //
 
             }
@@ -67,11 +67,11 @@ public class TestDrive {
                 //
 
                 //Send To Server
-                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "bad"));
-                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "ugly"));
-                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "poop"));
-                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "pee"));
-                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "dummy"));
+                clientManager.send(new StringPacket("TRASHTALK", "NOTICE", "bad"));
+                clientManager.send(new StringPacket("TRASHTALK", "NOTICE", "ugly"));
+                clientManager.send(new StringPacket("TRASHTALK", "NOTICE", "poop"));
+                clientManager.send(new StringPacket("TRASHTALK", "NOTICE", "pee"));
+                clientManager.send(new StringPacket("TRASHTALK", "NOTICE", "dummy"));
                 //
 
                 try {
@@ -100,7 +100,7 @@ public class TestDrive {
                  */
 
                 //Send To Server
-                clientManager.send(new DataPacket("TRASHTALK", "NOTICE", "sticky"));
+                clientManager.send(new StringPacket("TRASHTALK", "NOTICE", "sticky"));
             }
         }).start();
 

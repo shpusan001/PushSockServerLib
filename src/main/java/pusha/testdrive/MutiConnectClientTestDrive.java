@@ -1,6 +1,6 @@
 package pusha.testdrive;
 
-import pusha.Configuration.ClientConfiguration;
+import pusha.configuration.ClientConfiguration;
 import pusha.client.manager.ClientManager;
 
 import java.util.LinkedList;

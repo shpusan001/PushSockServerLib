@@ -1,6 +1,6 @@
 package pusha.socket;
 
-import pusha.packet.DataPacket;
+import pusha.packet.StringPacket;
 import pusha.packet.NullPacket;
 import pusha.packet.Packet;
 
@@ -36,7 +36,7 @@ public class ObjectWrappedSocket implements WrappedSocket {
     @Override
     public void send(String tag, String order, String data){
         try {
-            Packet packet = new DataPacket(tag, order, data);
+            Packet packet = new StringPacket(tag, order, data);
                 objectOutputStream.writeObject(packet);
                 objectOutputStream.reset();
         } catch (IOException e) {
@@ -74,8 +74,8 @@ public class ObjectWrappedSocket implements WrappedSocket {
 
         try {
             Object data = objectInputStream.readObject();
-            if(data instanceof DataPacket){
-                packet = (DataPacket) data;
+            if(data instanceof StringPacket){
+                packet = (StringPacket) data;
             }else{
                 packet = new NullPacket();
             }

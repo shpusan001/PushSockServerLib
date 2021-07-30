@@ -1,17 +1,14 @@
 package pusha.service;
 
 import pusha.packet.Packet;
-import pusha.log.SoutLog;
 import pusha.server.manager.ServerManager;
 import pusha.service.default_order.Order;
-import pusha.service.default_order.server.PacketNotice;
-import pusha.service.default_order.server.PacketUuid;
+import pusha.service.default_order.server.StringPacketNotice;
+import pusha.service.default_order.server.StringPacketUuid;
 import pusha.socket.WrappedSocket;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ServerPacketRecieveService implements RecieveService{
 
@@ -22,8 +19,8 @@ public class ServerPacketRecieveService implements RecieveService{
     public static RecieveService instance = new ServerPacketRecieveService();
 
     private ServerPacketRecieveService(){
-        addOrder("NOTICE", new PacketNotice());
-        addOrder("UUID", new PacketUuid());
+        addOrder("NOTICE", new StringPacketNotice());
+        addOrder("UUID", new StringPacketUuid());
     }
 
     @Override

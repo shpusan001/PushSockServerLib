@@ -1,4 +1,4 @@
-package pusha.Configuration;
+package pusha.configuration;
 
 public class ClientConfiguration {
     public static ClientConfiguration instance = new ClientConfiguration();

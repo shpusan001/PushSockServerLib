@@ -5,7 +5,7 @@ import pusha.packet.Packet;
 import pusha.service.default_order.Order;
 import pusha.socket.WrappedSocket;
 
-public class PacketNotice implements Order {
+public class StringPacketNotice implements Order {
     @Override
     public void excute(WrappedSocket wrappedSocket, Object object) {
         Packet packet = (Packet) object;

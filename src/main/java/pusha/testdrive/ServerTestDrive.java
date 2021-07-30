@@ -1,11 +1,9 @@
 package pusha.testdrive;
 
-import pusha.Configuration.ServerConfiguration;
-import pusha.packet.DataPacket;
+import pusha.configuration.ServerConfiguration;
+import pusha.packet.StringPacket;
 import pusha.server.manager.ServerManager;
 import pusha.server.repository.MemorySocketRepository;
-import pusha.service.ServerPacketRecieveService;
-import pusha.service.default_order.client.PacketNotice;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,7 +23,7 @@ public class ServerTestDrive {
         while(true){
 
             /**
-             * Write <ID> <TAG> <ORDER> <MESSAGE>
+             * Write <ID> <ORDER> <TAG> <MESSAGE>
              * be send
              */
 
@@ -39,11 +37,11 @@ public class ServerTestDrive {
 
             String[] inputSplited = input.split(" ");
             String id = inputSplited[0];
-            String tag = inputSplited[1];
-            String order = inputSplited[2];
+            String order = inputSplited[1];
+            String tag = inputSplited[2];
             String message = inputSplited[3];
 
-            serverManager.sendTarget(id, new DataPacket(tag, order, message));
+            serverManager.sendTarget(id, new StringPacket(tag, order, message));
         }
     }
 }

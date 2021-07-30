@@ -1,8 +1,8 @@
 package pusha.testdrive;
 
-import pusha.Configuration.ClientConfiguration;
+import pusha.configuration.ClientConfiguration;
 import pusha.client.manager.ClientManager;
-import pusha.packet.DataPacket;
+import pusha.packet.StringPacket;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class ClientTestDrive {
         while(true){
 
             /**
-             * Write <TAG> <ORDER> <MESSAGE>
+             * Write  <ORDER> <TAG> <MESSAGE>
              * be send
              */
 
@@ -45,11 +45,11 @@ public class ClientTestDrive {
             }
 
             String[] inputSplited = input.split(" ");
-            String tag = inputSplited[0];
-            String order = inputSplited[1];
+            String order = inputSplited[0];
+            String tag = inputSplited[1];
             String message = inputSplited[2];
 
-            clientManager.send(new DataPacket(tag, order, message));
+            clientManager.send(new StringPacket(tag, order, message));
         }
     }
 }

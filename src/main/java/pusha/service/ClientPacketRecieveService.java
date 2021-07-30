@@ -1,16 +1,13 @@
 package pusha.service;
 
-import pusha.log.SoutLog;
 import pusha.packet.Packet;
 import pusha.server.manager.ServerManager;
 import pusha.service.default_order.Order;
-import pusha.service.default_order.client.PacketNotice;
+import pusha.service.default_order.client.StringPacketNotice;
 import pusha.socket.WrappedSocket;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ClientPacketRecieveService implements RecieveService{
 
@@ -21,7 +18,7 @@ public class ClientPacketRecieveService implements RecieveService{
     public static ClientPacketRecieveService instance = new ClientPacketRecieveService();
 
     private ClientPacketRecieveService(){
-        addOrder("NOTICE", new PacketNotice());
+        addOrder("NOTICE", new StringPacketNotice());
     }
 
     @Override

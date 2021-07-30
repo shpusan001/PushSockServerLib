@@ -1,6 +1,6 @@
 package pusha.client.thread;
 
-import pusha.Configuration.ClientConfiguration;
+import pusha.configuration.ClientConfiguration;
 import pusha.client.manager.ClientManager;
 import pusha.service.ClientPacketRecieveService;
 import pusha.log.SoutLog;

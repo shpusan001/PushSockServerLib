@@ -1,26 +1,28 @@
 package pusha.packet;
 
-import java.io.Serializable;
+public class ObjectPacket implements Packet{
+    String tag;
+    String order;
+    String message;
+    Object object;
 
-public class NullPacket implements Serializable, Packet {
     @Override
     public String getOrder() {
-        return "NULL";
+        return order;
     }
 
     @Override
     public String getTag() {
-        return "NULL";
+        return tag;
     }
-
 
     @Override
     public String getMessage() {
-        return "NULL";
+        return message;
     }
 
     @Override
     public Object getObject() {
-        return null;
+        return object;
     }
 }
