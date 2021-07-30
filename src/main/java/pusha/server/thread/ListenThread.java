@@ -24,7 +24,6 @@ public class ListenThread implements Runnable{
                 new SoutLog("Server", "Client connect, Connected : "
                         + serverManager.connectedCount).log();
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }

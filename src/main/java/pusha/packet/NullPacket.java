@@ -15,12 +15,7 @@ public class NullPacket implements Serializable, Packet {
 
 
     @Override
-    public String getMessage() {
+    public String getData() {
         return "NULL";
-    }
-
-    @Override
-    public Object getObject() {
-        return null;
     }
 }

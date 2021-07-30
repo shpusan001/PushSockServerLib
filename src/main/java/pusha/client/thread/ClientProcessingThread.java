@@ -40,7 +40,6 @@ public class ClientProcessingThread implements Runnable {
             ClientManager.instance.connect(ClientConfiguration.instance.ip, ClientConfiguration.instance.port,
                     ClientConfiguration.instance.id);
         } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 }

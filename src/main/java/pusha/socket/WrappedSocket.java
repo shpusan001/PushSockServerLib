@@ -6,7 +6,6 @@ import java.net.Socket;
 
 public interface WrappedSocket {
 
-    public void send(String tag, String order, String data);
     public void send(Packet packet);
     public Object recieve();
     public boolean isConnect();

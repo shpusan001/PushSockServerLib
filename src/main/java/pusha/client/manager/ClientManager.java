@@ -3,6 +3,7 @@ package pusha.client.manager;
 import pusha.client.thread.ClientProcessingThread;
 import pusha.log.SoutLog;
 import pusha.packet.Packet;
+import pusha.packet.StringPacket;
 import pusha.socket.ObjectWrappedSocket;
 import pusha.socket.WrappedSocket;
 
@@ -35,7 +36,7 @@ public class ClientManager {
             Socket checkingBitSocket = new Socket(ip, port+1);
             wrappedSocket = new ObjectWrappedSocket(socket, checkingBitSocket, false);
             wrappedSocket.setSocketId(id);
-            wrappedSocket.send("UUID", "UUID", wrappedSocket.getSocketId());
+            wrappedSocket.send(new StringPacket("UUID", "UUID", wrappedSocket.getSocketId()));
             clientMap.put(id, wrappedSocket);
             new SoutLog("Client", "connected, id ={" + id + "}").log();
         } catch (IOException e) {

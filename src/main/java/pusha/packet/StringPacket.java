@@ -24,12 +24,7 @@ public class StringPacket implements Serializable, Packet  {
     }
 
     @Override
-    public String getMessage() {
+    public String getData() {
         return message;
-    }
-
-    @Override
-    public Object getObject() {
-        return null;
     }
 }

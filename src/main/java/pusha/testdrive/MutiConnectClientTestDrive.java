@@ -26,7 +26,7 @@ public class MutiConnectClientTestDrive {
 
         List<ClientManager> clist = new LinkedList<>();
         int count =0;
-        for (int i = 0; i < 5000; i++) {
+        for (int i = 0; i < 10000; i++) {
             clist.add(new ClientManager());
         }
         for (ClientManager c : clist) {
@@ -54,7 +54,7 @@ public class MutiConnectClientTestDrive {
             String id = inputSplited[0];
             String order = inputSplited[1];
             String tag = inputSplited[2];
-            String message = inputSplited[3];
+            String data = inputSplited[3];
 
             /**
              * Write <ID> <ORDER> <TAG> <MESSAGE>
@@ -62,7 +62,7 @@ public class MutiConnectClientTestDrive {
              */
 
             if(ClientManager.clientMap.containsKey(id)) {
-                ClientManager.clientMap.get(id).send(new StringPacket(order, tag, message));
+                ClientManager.clientMap.get(id).send(new StringPacket(order, tag, data));
             }
         }
     }

@@ -9,6 +9,6 @@ public class StringPacketNotice implements Order {
     @Override
     public void excute(WrappedSocket wrappedSocket, Object object) {
         Packet packet = (Packet) object;
-        new SoutLog(packet.getTag(), "{" + wrappedSocket.getSocketId() + "} => Server : " + packet.getMessage()).log();
+        new SoutLog(packet.getTag(), "{" + wrappedSocket.getSocketId() + "} => Server : " + packet.getData()).log();
     }
 }

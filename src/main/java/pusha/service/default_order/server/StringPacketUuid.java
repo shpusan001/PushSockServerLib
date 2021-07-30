@@ -12,8 +12,8 @@ public class StringPacketUuid implements Order {
     @Override
     public void excute(WrappedSocket wrappedSocket, Object object) {
         Packet packet = (Packet) object;
-        wrappedSocket.setSocketId(packet.getMessage());
-        serverManager.repository.addOnMap(packet.getMessage(), wrappedSocket);
+        wrappedSocket.setSocketId((String) packet.getData());
+        serverManager.repository.addOnMap((String) packet.getData(), wrappedSocket);
         new SoutLog(packet.getTag(), "{" + wrappedSocket.getSocketId() + "} is registered").log();
     }
 }

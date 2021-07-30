@@ -32,17 +32,6 @@ public class ObjectWrappedSocket implements WrappedSocket {
     }
 
     @Override
-    public void send(String tag, String order, String data){
-        try {
-            Packet packet = new StringPacket(order, tag, data);
-                objectOutputStream.writeObject(packet);
-                objectOutputStream.reset();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public void send(Packet packet){
         try {
                 objectOutputStream.writeObject(packet);
@@ -86,6 +75,10 @@ public class ObjectWrappedSocket implements WrappedSocket {
     @Override
     public boolean isConnect() {
         try {
+            if(objectOutputStream==null || objectInputStream ==null
+            || socket.isClosed()){
+                return false;
+            }
                 DataOutputStream dataOutputStream = new DataOutputStream(checkingBitSocket.getOutputStream());
                 dataOutputStream.writeUTF("");
                 return true;
