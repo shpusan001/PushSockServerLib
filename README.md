@@ -25,6 +25,7 @@
 > + ClientManager : 클라이언트 구축 매니저 (선택적 전역 접근점)
 > + ServerObjectRecieveService : 서버의 수신데이터 처리 (싱글톤)
 > + ClientObjectRecieveService : 클라이언트의 수신 데이터 처리 (싱글톤)
+> + SoutLog : 콘솔창에 로그를 출력
     
 ### 초기 설정
 1. ServerConfiguration 클래스, ClientConfiguration 클래스의 싱글톤 객체에 접근하여
@@ -80,6 +81,13 @@ ServerPacketReceiveService.instance.addOrder("NOTICE", new StringPacketNotice())
 >3.이제 서버에 NOTICE 라는 명령을 가진 패킷이 들어오면, 앞서 정의한대로 작업이 실행된다.
 
 >4.클라이언트의 경우, ClientPacketRecieveService 클래스에 앞선 과정을 진행하면 된다.
+
+### 로그
+> SoutLog 클래스를 활용하여 로그를 출력할 수 있다.   
+> '[시간] [태그] 로그' 형식으로 콘솔에 출력한다.
+```java
+new SoutLog("tag", "log").log();
+```
 
 ### 서버 와 클라이언트
 > 본 라이브러리는 '서버구축' 과 '클라이언트구축' 이 모두 가능합니다.
