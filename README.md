@@ -83,7 +83,7 @@ ServerPacketReceiveService.instance.addOrder("NOTICE", new StringPacketNotice())
 >4.클라이언트의 경우, ClientPacketRecieveService 클래스에 앞선 과정을 진행하면 된다.
 
 ### 로그
-> SoutLog 클래스를 활용하여 로그를 출력할 수 있다.   
+> SoutLog 클래스를 활용하여 로그를 출력할 수 있다.   W
 > '[시간] [태그] 로그' 형식으로 콘솔에 출력한다.
 ```java
 new SoutLog("tag", "log").log();

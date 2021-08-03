@@ -16,7 +16,7 @@ public class ClientManager {
 
     private WrappedSocket wrappedSocket;
 
-    private Thread clientProcessingThread;
+    public Thread clientProcessingThread;
 
     public static ClientManager instance;
 
