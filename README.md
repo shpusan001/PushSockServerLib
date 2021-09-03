@@ -30,7 +30,8 @@
 ### 초기 설정
 1. ServerConfiguration 클래스, ClientConfiguration 클래스의 싱글톤 객체에 접근하여
 필요한 설정을 정의한다.
->+ 서버의 경우 : 바운드를 위한 port를 정한다.
+>+ 서버의 경우 : 바인드를 위한 port를 정한다.
+>+ 서버는 두개의 포트를 바인드한다. (설정한 포트, 설정한 포트 +1) (7777, 7778)
 ```java
 ServerConfiguration.instance.port = 7777; // int
 ```
