@@ -13,6 +13,12 @@
 > + 쉽고 편리한 구축 및 사용
 > + 객체 전송에 특화
 
+## Pusha2 배포
+
+**Pusha보다 더 빠르고 안정적인 Pusha2사용을 추천합니다.**  
+  
+링크: https://github.com/shpusan001/Pusha2
+
 ---
 
 ## 공통
